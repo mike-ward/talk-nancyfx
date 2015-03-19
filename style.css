@@ -1,0 +1,7 @@
+pre { font-size: 90% }
+
+#slide-2 {
+  background: url('nancyfx-home.png');
+  background-size: cover;
+  color: #eee;
+}
