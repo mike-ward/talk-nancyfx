@@ -492,7 +492,152 @@ pre { font-size: 90% }
 }</code></pre>
 </section>
   </div>
-  <div class="slide hidden" id="slide-12">
+  <div class="slide hidden " id="slide-12">
+    <section class="slide-content"><h3 id="tinyioc">TinyIoC</h3>
+<ul>
+<li>Default implementation uses TinyIoC</li>
+<li>Auto-resolves concreate types</li>
+<li>Auto-registers interfaces</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-13">
+    <section class="slide-content"><h3 id="other-ioc-s">Other IoC&#39;s</h3>
+<ul>
+<li>TinyIoC be swapped out with a container of your choice</li>
+<li>All major containers available through NuGet</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-14">
+    <section class="slide-content"><h3 id="views">Views</h3>
+<ul>
+<li>You get a lot of choices...</li>
+<li>For most cases, it just works.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-15">
+    <section class="slide-content"><h3 id="resolving-views-from-routes">Resolving Views from Routes</h3>
+<pre><code>Get[&quot;/customers&quot;] = p =&gt; View[&quot;customers.html&quot;, someModel];
+
+Get[&quot;/customers&quot;] = p =&gt; View[&quot;customers.html&quot;, someModel];
+
+Get[&quot;data/customers&quot;] = p =&gt; View[&quot;customers.html&quot;, someModel];</code></pre>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-16">
+    <section class="slide-content"><h3 id="resolving-views-from-models">Resolving Views from Models</h3>
+<pre><code>Get[&quot;/customers&quot;] = p =&gt; View[customersModel];</code></pre>
+<ol>
+<li>Strip off <code>Model</code> if there</li>
+<li>Look in Views folder</li>
+<li>Look in <code>/customers</code> folder</li>
+</ol>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-17">
+    <section class="slide-content"><h3 id="custom-view-conventions">Custom View Conventions</h3>
+<pre><code>public class CustomBootstrapper : DefaultNancyBootstrapper
+{
+    protected override void ApplicationStartup(
+        TinyIoCContainer container, 
+        Nancy.Bootstrapper.IPipelines pipelines)
+    {
+        Conventions
+            .ViewLocationConventions
+            .Add((viewName, model, context) =&gt;
+        {
+            return string.Concat(&quot;custom/&quot;, viewName);
+        });
+    }
+}</code></pre>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-18">
+    <section class="slide-content"><h3 id="roll-your-own">Roll Your Own</h3>
+<ul>
+<li>Implement <code>IConvention</code></li>
+<li>Add to <code>ViewLocationConventions</code> property</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-19">
+    <section class="slide-content"><h3 id="view-engines">View Engines</h3>
+<p>You get a lot of choices...</p>
+<ul>
+<li>Super Simple View Engine</li>
+<li>Razor</li>
+<li>Spark</li>
+<li>DotLiquid</li>
+<li>Markdown</li>
+<li>...</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-20">
+    <section class="slide-content"><h3 id="super-simple-view-engine">Super Simple View Engine</h3>
+<pre><code>@Master[&#39;MasterPage&#39;]
+
+@Section[&#39;Content&#39;]
+    &lt;p&gt;This content from the index page&lt;p&gt;
+    &lt;h3&gt;Partials&lt;/h3&gt;
+    &lt;p&gt;Partial view with no model.&lt;/p&gt;
+    &lt;div id=&quot;login&quot;&gt;@Partial[&#39;login&#39;];&lt;/div&gt;
+    &lt;p&gt;Partial with a sub-model passed in.&lt;/p&gt;
+    &lt;p&gt;Iterate with Each&lt;/p&gt;
+    &lt;div id=&quot;users&quot;&gt;@Partial[&#39;user&#39;, Model.Users];&lt;/div&gt;
+    &lt;h3&gt;Encoding&lt;/h3&gt;
+    &lt;p&gt;Model output can also be encoded:&lt;/p&gt;
+    &lt;p&gt;@!Model.NaughtyStuff&lt;/p&gt;
+@EndSection</code></pre>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-21">
+    <section class="slide-content"><h3 id="razor">Razor</h3>
+<pre><code>PM&gt; Install-Package Nancy.ViewEngines.Razor</code></pre>
+<p><code>@Model</code> not <code>@model</code> like in ASP.NET MVC</p>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-22">
+    <section class="slide-content"><h3 id="routes">Routes</h3>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-23">
+    <section class="slide-content"><h3 id="model-binding">Model Binding</h3>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-24">
+    <section class="slide-content"><h3 id="testing">Testing</h3>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-25">
+    <section class="slide-content"><h3 id="content-negotiation">Content Negotiation</h3>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-26">
+    <section class="slide-content"><h3 id="static-content">Static Content</h3>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-27">
+    <section class="slide-content"><h3 id="authentication">Authentication</h3>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-28">
+    <section class="slide-content"><h3 id="diagnostics">Diagnostics</h3>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-29">
+    <section class="slide-content"><h3 id="in-conclusion">In Conclusion</h3>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-30">
+    <section class="slide-content"><h3 id="slides">Slides</h3>
+<p><a href="https://github.com/mike-ward/talk-nancyfx">https://github.com/mike-ward/talk-nancyfx</a></p>
+<p>Use the <code>gh-pages</code> branch.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-31">
     <section class="slide-content"><div class="author">
   <h1 class="name">Mike Ward</h1>
     <h3 class="twitter">
