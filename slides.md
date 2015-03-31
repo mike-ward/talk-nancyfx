@@ -22,6 +22,20 @@ style: style.css
 ![fit](nancy-sinatra.jpg)
 
 --
+### Sinatra (Ruby)
+
+    #!/usr/bin/env ruby
+    require 'sinatra'
+     
+    get '/' do
+      redirect to('/hello/World')
+    end
+     
+    get '/hello/:name' do
+      "Hello #{params[:name]}!"
+    end
+
+--
 ### Built to Run Anywhere
 
 One of the core concepts in Nancy is hosts
@@ -72,7 +86,7 @@ Runs on existing technologies
 --
 ### Bootstrapper
 
-To change the runtime behavior of Nancy write a custom bootstrapper
+To change the runtime behavior of Nancy, write a custom bootstrapper
 
     public class CustomBootstrapper : DefaultNancyBootstrapper
     {
@@ -110,7 +124,8 @@ To change the runtime behavior of Nancy write a custom bootstrapper
 
     Get["/customers"] = p => View["customers.html", someModel];
 
-    Get["data/customers"] = p => View["customers.html", someModel];
+    Get["data/customers"] = 
+        p => View["customers.html", someModel];
 
 -- 
 ### Resolving Views from Models
@@ -185,9 +200,63 @@ You get a lot of choices...
 --
 ### Routes
 
+    // captures routes like /hello/nancy sent as a GET request
+    
+    Get["/hello/{name}"] = parameters => {
+        return "Hello " + parameters.name;
+    };
+    
+    // captures routes like /favoriteNumber/1234, 
+    // but not /favoriteNumber/asdf as a GET request
+    
+    Get["/favoriteNumber/{value:int}"] = parameters => {
+        return "Favorite number is " + parameters.value + "?";
+    };
+
+--
+### Routes (continued)
+
+    // captures routes like /products/1034 
+    // sent as a DELETE request
+    
+    Delete[@"/products/(?<id>[\d]{1,7})"] = parameters => {
+        return 200;
+    };
+    
+    // captures routes like /users/192/add/moderator 
+    // sent as a POST request
+    
+    Post["/users/{id}/add/{category}"] = parameters => {
+        return HttpStatusCode.OK;
+    };
+
+--
+### Routes (Contraints)
+
+  int
+, long
+, decimal
+, guid
+, bool
+, alpha
+, datetime
+, datetime(format)
+, min(minimum)
+, max(maximum)
+, range(minimum, maximum)
+, minlength(length)
+, maxlength(length)
+, length(minimum, maximum)
+
+#### Custom Contraints
+
+    RouteSegmentConstraintBase<T>
+    
+    ParameterizedRouteSegmentConstraintBase<T>
 
 --
 ### Model Binding
+
 
 
 --
