@@ -10,6 +10,13 @@ style: style.css
 ## ASP.NET's Super Duper Happy Framework
 
 --
+### Slides
+
+> <http://mike-ward.net/talk-nancyfx>
+
+> <https://github.com/mike-ward/talk-nancyfx>
+
+--
 
 --
 ### Demo
@@ -257,11 +264,75 @@ You get a lot of choices...
 --
 ### Model Binding
 
+    var model = this.Bind<Foo>();
 
+#### Serialization
+
+- collect from the body (JSON, XML, Forms)
+- collect from captured parameters
+- collect from query strings
+
+#### Deserialization
+
+- JSON and XML
+- Roll your own
 
 --
 ### Testing
 
+    [Fact]
+    public void Should_return_status_ok_when_route_exists()
+    {
+        var bootstrapper = new DefaultNancyBootstrapper();
+        var browser = new Browser(bootstrapper);
+    
+        var result = browser.Get("/", with => {
+            with.HttpRequest();
+        });
+    
+        Assert.Equal(HttpStatusCode.OK, result.StatusCode);
+    }
+
+--
+### Being Assertive
+
+    [Fact]
+    public void Should_redirect_to_login_with_error_details_incorrect()
+    {
+        var bootstrapper = new DefaultNancyBootstrapper();
+        var browser = new Browser(bootstrapper);
+    
+        var response = browser.Post("/login/", (with) => {
+            with.HttpRequest();
+            with.FormValue("Username", "username");
+            with.FormValue("Password", "wrongpassword");
+        });
+    
+        response.ShouldHaveRedirectedTo(
+            "/login?error=true&username=username");
+    }
+
+--
+### Assert Content
+
+    [Fact]
+    public void Should_display_error_message_when_error_passed()
+    {
+        var bootstrapper = new DefaultNancyBootstrapper();
+        var browser = new Browser(bootstrapper);
+    
+        var response = browser.Get("/login", (with) => {
+            with.HttpRequest();
+            with.Query("error", "true");
+        });
+    
+        response.Body["#errorBox"]
+                .ShouldExistOnce()
+                .And.ShouldBeOfClass("floatingError")
+                .And.ShouldContain(
+                    "invalid",
+                    StringComparison.InvariantCultureIgnoreCase);
+    }
 
 --
 ### Content Negotiation

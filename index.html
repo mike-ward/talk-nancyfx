@@ -394,7 +394,7 @@ pre .chunk {
 
 pre { font-size: 90% }
 
-#slide-2 {
+#slide-3 {
   background: url('nancyfx-home.png');
   background-size: cover;
   color: #eee;
@@ -412,19 +412,27 @@ pre { font-size: 90% }
 </section>
   </div>
   <div class="slide hidden " id="slide-2">
-    <section class="slide-content"></section>
+    <section class="slide-content"><h3 id="slides">Slides</h3>
+<blockquote>
+<p><a href="http://mike-ward.net/talk-nancyfx">http://mike-ward.net/talk-nancyfx</a></p>
+<p><a href="https://github.com/mike-ward/talk-nancyfx">https://github.com/mike-ward/talk-nancyfx</a></p>
+</blockquote>
+</section>
   </div>
   <div class="slide hidden " id="slide-3">
+    <section class="slide-content"></section>
+  </div>
+  <div class="slide hidden " id="slide-4">
     <section class="slide-content"><h3 id="demo">Demo</h3>
 <p><a href="https://dotnetfiddle.net/YkgrV6">https://dotnetfiddle.net/YkgrV6</a></p>
 </section>
   </div>
-  <div class="slide hidden " id="slide-4">
+  <div class="slide hidden " id="slide-5">
     <section class="slide-content"><h3 id="why-nancy-">Why Nancy?</h3>
 <p><img src="nancy-sinatra.jpg" alt="fit"></p>
 </section>
   </div>
-  <div class="slide hidden " id="slide-5">
+  <div class="slide hidden " id="slide-6">
     <section class="slide-content"><h3 id="sinatra-ruby-">Sinatra (Ruby)</h3>
 <pre><code>#!/usr/bin/env ruby
 require &#39;sinatra&#39;
@@ -438,10 +446,10 @@ get &#39;/hello/:name&#39; do
 end</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-6">
+  <div class="slide hidden " id="slide-7">
     <section class="slide-content"><h3 id="built-to-run-anywhere">Built to Run Anywhere</h3>
 <p>One of the core concepts in Nancy is hosts</p>
-<p>Hosts act as adapters for a hosting environment and Nancy</p>
+<p>Hosts are adapters for hosting environments and Nancy</p>
 <p>Runs on existing technologies </p>
 <ul>
 <li>ASP.NET</li>
@@ -451,7 +459,7 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-7">
+  <div class="slide hidden " id="slide-8">
     <section class="slide-content"><h3 id="the-super-duper-happy-path">The super-duper-happy-path</h3>
 <p>“It just works”</p>
 <ul>
@@ -461,7 +469,7 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-8">
+  <div class="slide hidden " id="slide-9">
     <section class="slide-content"><h3 id="easily-customizable">Easily Customizable</h3>
 <ul>
 <li>Use any IOC container</li>
@@ -470,7 +478,7 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-9">
+  <div class="slide hidden " id="slide-10">
     <section class="slide-content"><h3 id="low-ceremony">Low Ceremony</h3>
 <ul>
 <li>Minimal code</li>
@@ -478,7 +486,7 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-10">
+  <div class="slide hidden " id="slide-11">
     <section class="slide-content"><h3 id="low-friction">Low Friction</h3>
 <ul>
 <li>Stays out of the way</li>
@@ -487,12 +495,12 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-11">
+  <div class="slide hidden " id="slide-12">
     <section class="slide-content"><h3 id="demo">Demo</h3>
 <p><a href="https://dotnetfiddle.net/yWSvP8">https://dotnetfiddle.net/yWSvP8</a></p>
 </section>
   </div>
-  <div class="slide hidden " id="slide-12">
+  <div class="slide hidden " id="slide-13">
     <section class="slide-content"><h3 id="bootstrapper">Bootstrapper</h3>
 <p>To change the runtime behavior of Nancy, write a custom bootstrapper</p>
 <pre><code>public class CustomBootstrapper : DefaultNancyBootstrapper
@@ -506,7 +514,7 @@ end</code></pre>
 }</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-13">
+  <div class="slide hidden " id="slide-14">
     <section class="slide-content"><h3 id="tinyioc">TinyIoC</h3>
 <ul>
 <li>Default implementation uses TinyIoC</li>
@@ -515,7 +523,7 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-14">
+  <div class="slide hidden " id="slide-15">
     <section class="slide-content"><h3 id="other-ioc-s">Other IoC&#39;s</h3>
 <ul>
 <li>TinyIoC be swapped out with a container of your choice</li>
@@ -523,7 +531,7 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-15">
+  <div class="slide hidden " id="slide-16">
     <section class="slide-content"><h3 id="views">Views</h3>
 <ul>
 <li>You get a lot of choices...</li>
@@ -531,7 +539,7 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-16">
+  <div class="slide hidden " id="slide-17">
     <section class="slide-content"><h3 id="resolving-views-from-routes">Resolving Views from Routes</h3>
 <pre><code>Get[&quot;/customers&quot;] = p =&gt; View[&quot;customers.html&quot;, someModel];
 
@@ -541,7 +549,7 @@ Get[&quot;data/customers&quot;] =
     p =&gt; View[&quot;customers.html&quot;, someModel];</code></pre>
 </section>
   </div>
-  <div class="slide hidden  " id="slide-17">
+  <div class="slide hidden  " id="slide-18">
     <section class="slide-content"><h3 id="resolving-views-from-models">Resolving Views from Models</h3>
 <pre><code>Get[&quot;/customers&quot;] = p =&gt; View[customersModel];</code></pre>
 <ol>
@@ -551,7 +559,7 @@ Get[&quot;data/customers&quot;] =
 </ol>
 </section>
   </div>
-  <div class="slide hidden  " id="slide-18">
+  <div class="slide hidden  " id="slide-19">
     <section class="slide-content"><h3 id="custom-view-conventions">Custom View Conventions</h3>
 <pre><code>public class CustomBootstrapper : DefaultNancyBootstrapper
 {
@@ -569,7 +577,7 @@ Get[&quot;data/customers&quot;] =
 }</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-19">
+  <div class="slide hidden " id="slide-20">
     <section class="slide-content"><h3 id="roll-your-own">Roll Your Own</h3>
 <ul>
 <li>Implement <code>IConvention</code></li>
@@ -577,7 +585,7 @@ Get[&quot;data/customers&quot;] =
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-20">
+  <div class="slide hidden " id="slide-21">
     <section class="slide-content"><h3 id="view-engines">View Engines</h3>
 <p>You get a lot of choices...</p>
 <ul>
@@ -590,7 +598,7 @@ Get[&quot;data/customers&quot;] =
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-21">
+  <div class="slide hidden " id="slide-22">
     <section class="slide-content"><h3 id="super-simple-view-engine">Super Simple View Engine</h3>
 <pre><code>@Master[&#39;MasterPage&#39;]
 
@@ -608,13 +616,13 @@ Get[&quot;data/customers&quot;] =
 @EndSection</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-22">
+  <div class="slide hidden " id="slide-23">
     <section class="slide-content"><h3 id="razor">Razor</h3>
 <pre><code>PM&gt; Install-Package Nancy.ViewEngines.Razor</code></pre>
 <p><code>@Model</code> not <code>@model</code> like in ASP.NET MVC</p>
 </section>
   </div>
-  <div class="slide hidden " id="slide-23">
+  <div class="slide hidden " id="slide-24">
     <section class="slide-content"><h3 id="routes">Routes</h3>
 <pre><code>// captures routes like /hello/nancy sent as a GET request
 
@@ -630,7 +638,7 @@ Get[&quot;/favoriteNumber/{value:int}&quot;] = parameters =&gt; {
 };</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-24">
+  <div class="slide hidden " id="slide-25">
     <section class="slide-content"><h3 id="routes-continued-">Routes (continued)</h3>
 <pre><code>// captures routes like /products/1034 
 // sent as a DELETE request
@@ -647,7 +655,7 @@ Post[&quot;/users/{id}/add/{category}&quot;] = parameters =&gt; {
 };</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-25">
+  <div class="slide hidden " id="slide-26">
     <section class="slide-content"><h3 id="routes-contraints-">Routes (Contraints)</h3>
 <p>  int
 , long
@@ -669,41 +677,106 @@ Post[&quot;/users/{id}/add/{category}&quot;] = parameters =&gt; {
 ParameterizedRouteSegmentConstraintBase&lt;T&gt;</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-26">
-    <section class="slide-content"><h3 id="model-binding">Model Binding</h3>
-</section>
-  </div>
   <div class="slide hidden " id="slide-27">
-    <section class="slide-content"><h3 id="testing">Testing</h3>
+    <section class="slide-content"><h3 id="model-binding">Model Binding</h3>
+<pre><code>var model = this.Bind&lt;Foo&gt;();</code></pre>
+<h4 id="serialization">Serialization</h4>
+<ul>
+<li>collect from the body (JSON, XML, Forms)</li>
+<li>collect from captured parameters</li>
+<li>collect from query strings</li>
+</ul>
+<h4 id="deserialization">Deserialization</h4>
+<ul>
+<li>JSON and XML</li>
+<li>Roll your own</li>
+</ul>
 </section>
   </div>
   <div class="slide hidden " id="slide-28">
-    <section class="slide-content"><h3 id="content-negotiation">Content Negotiation</h3>
+    <section class="slide-content"><h3 id="testing">Testing</h3>
+<pre><code>[Fact]
+public void Should_return_status_ok_when_route_exists()
+{
+    var bootstrapper = new DefaultNancyBootstrapper();
+    var browser = new Browser(bootstrapper);
+
+    var result = browser.Get(&quot;/&quot;, with =&gt; {
+        with.HttpRequest();
+    });
+
+    Assert.Equal(HttpStatusCode.OK, result.StatusCode);
+}</code></pre>
 </section>
   </div>
   <div class="slide hidden " id="slide-29">
-    <section class="slide-content"><h3 id="static-content">Static Content</h3>
+    <section class="slide-content"><h3 id="being-assertive">Being Assertive</h3>
+<pre><code>[Fact]
+public void Should_redirect_to_login_with_error_details_incorrect()
+{
+    var bootstrapper = new DefaultNancyBootstrapper();
+    var browser = new Browser(bootstrapper);
+
+    var response = browser.Post(&quot;/login/&quot;, (with) =&gt; {
+        with.HttpRequest();
+        with.FormValue(&quot;Username&quot;, &quot;username&quot;);
+        with.FormValue(&quot;Password&quot;, &quot;wrongpassword&quot;);
+    });
+
+    response.ShouldHaveRedirectedTo(
+        &quot;/login?error=true&amp;username=username&quot;);
+}</code></pre>
 </section>
   </div>
   <div class="slide hidden " id="slide-30">
-    <section class="slide-content"><h3 id="authentication">Authentication</h3>
+    <section class="slide-content"><h3 id="assert-content">Assert Content</h3>
+<pre><code>[Fact]
+public void Should_display_error_message_when_error_passed()
+{
+    var bootstrapper = new DefaultNancyBootstrapper();
+    var browser = new Browser(bootstrapper);
+
+    var response = browser.Get(&quot;/login&quot;, (with) =&gt; {
+        with.HttpRequest();
+        with.Query(&quot;error&quot;, &quot;true&quot;);
+    });
+
+    response.Body[&quot;#errorBox&quot;]
+            .ShouldExistOnce()
+            .And.ShouldBeOfClass(&quot;floatingError&quot;)
+            .And.ShouldContain(
+                &quot;invalid&quot;,
+                StringComparison.InvariantCultureIgnoreCase);
+}</code></pre>
 </section>
   </div>
   <div class="slide hidden " id="slide-31">
-    <section class="slide-content"><h3 id="diagnostics">Diagnostics</h3>
+    <section class="slide-content"><h3 id="content-negotiation">Content Negotiation</h3>
 </section>
   </div>
   <div class="slide hidden " id="slide-32">
-    <section class="slide-content"><h3 id="in-conclusion">In Conclusion</h3>
+    <section class="slide-content"><h3 id="static-content">Static Content</h3>
 </section>
   </div>
   <div class="slide hidden " id="slide-33">
+    <section class="slide-content"><h3 id="authentication">Authentication</h3>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-34">
+    <section class="slide-content"><h3 id="diagnostics">Diagnostics</h3>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-35">
+    <section class="slide-content"><h3 id="in-conclusion">In Conclusion</h3>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-36">
     <section class="slide-content"><h3 id="slides">Slides</h3>
 <p><a href="https://github.com/mike-ward/talk-nancyfx">https://github.com/mike-ward/talk-nancyfx</a></p>
 <p>Use the <code>gh-pages</code> branch.</p>
 </section>
   </div>
-  <div class="slide hidden" id="slide-34">
+  <div class="slide hidden" id="slide-37">
     <section class="slide-content"><div class="author">
   <h1 class="name">Mike Ward</h1>
     <h3 class="twitter">
