@@ -40,7 +40,7 @@ style: style.css
 
 One of the core concepts in Nancy is hosts
 
-Hosts act as adapters for a hosting environment and Nancy
+Hosts are adapters for hosting environments and Nancy
 
 Runs on existing technologies 
 
