@@ -393,6 +393,7 @@ Short Answer: No built-in authentication
 
 Longer Answer: Extension points allow you to add authentication that fits your business needs.
 
+--
 ### Supported Authentication Packages
 
 - Forms (`Nancy.Authentication.Forms`)
@@ -403,8 +404,9 @@ Longer Answer: Extension points allow you to add authentication that fits your b
 ### Diagnostics
 
 
-    protected override DiagnosticsConfiguration DiagnosticsConfiguration 
-        => new DiagnosticsConfiguration { Password = @"secret" };
+    protected override 
+        DiagnosticsConfiguration DiagnosticsConfiguration =>
+        new DiagnosticsConfiguration { Password = @"secret" };
 
 -- diagnostics-page
 
