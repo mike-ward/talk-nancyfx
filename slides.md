@@ -16,7 +16,7 @@ style: style.css
 
 > <https://github.com/mike-ward/talk-nancyfx>
 
---
+-- nancy-home-page
 
 --
 ### Demo
@@ -59,7 +59,10 @@ Runs on existing technologies
 --
 ### The super-duper-happy-path
 
-“It just works”
+![sdhp](sdhp.gif)
+
+--
+### It just works
 
 * Modules automatically discovered
 * Multiple view engines per application
@@ -127,13 +130,14 @@ To change the runtime behavior of Nancy, write a custom bootstrapper
 --
 ### Resolving Views from Routes
 
+
     Get["/customers"] = p => View["customers.html", someModel];
 
     Get["/customers"] = p => View["customers.html", someModel];
 
     Get["data/customers"] = 
         p => View["customers.html", someModel];
-
+ 
 -- 
 ### Resolving Views from Models
 
@@ -266,19 +270,25 @@ You get a lot of choices...
 
     var model = this.Bind<Foo>();
 
-#### Serialization
+**Serialization**
 
 - collect from the body (JSON, XML, Forms)
 - collect from captured parameters
 - collect from query strings
 
-#### Deserialization
+**Deserialization**
 
 - JSON and XML
 - Roll your own
 
 --
 ### Testing
+
+
+![nancy.testing](nancy.testing.png)
+
+--
+### Headless Testing
 
     [Fact]
     public void Should_return_status_ok_when_route_exists()
@@ -297,7 +307,7 @@ You get a lot of choices...
 ### Being Assertive
 
     [Fact]
-    public void Should_redirect_to_login_with_error_details_incorrect()
+    public void Should_redirect_to_login_error_details_incorrect()
     {
         var bootstrapper = new DefaultNancyBootstrapper();
         var browser = new Browser(bootstrapper);
@@ -337,26 +347,74 @@ You get a lot of choices...
 --
 ### Content Negotiation
 
+    Get["/"] = parameters => {
+      return new MyModel();
+    };
+    
+The content negotiation pipeline will inspect the incoming Accept headers and determine which of the requested media types is the most suitable and format the response accordingly.
+
+--
+### File Extension Hotwiring
+
+    Get["/ratpack"] = parameters => {
+        return new RatPack {FirstName = "Nancy "});
+    };
+
+- /ratpack.json => json response
+- /ratpack.xml => xml response
 
 --
 ### Static Content
 
+**TL;DR: stick stuff in `/Content` .. done.**
+
+
+--
+### Define your own Convention(s)
+
+    public class CustomBoostrapper : DefaultNancyBootstrapper
+    {
+        protected override void 
+            ConfigureConventions(NancyConventions conventions)
+        {
+            base.ConfigureConventions(conventions);
+    
+            conventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory
+                ("assets", @"contentFolder/subFolder")
+            );
+        }
+    }
 
 --
 ### Authentication
 
+Short Answer: No built-in authentication
+
+Longer Answer: Extension points allow you to add authentication that fits your business needs.
+
+### Supported Authentication Packages
+
+- Forms (`Nancy.Authentication.Forms`)
+- Basic (`Nancy.Authentication.Basic`)
+- Stateless (`Nancy.Authentication.Stateless`)
 
 --
 ### Diagnostics
 
 
---
-### In Conclusion
+    protected override DiagnosticsConfiguration DiagnosticsConfiguration 
+        => new DiagnosticsConfiguration { Password = @"secret" };
+
+-- diagnostics-page
 
 
 --
-### Slides
+### Why Nancy?
 
-<https://github.com/mike-ward/talk-nancyfx>
+**Because it Rocks!**
 
-Use the `gh-pages` branch.
+![rocking](rocking.jpg)
+
+Oh, and all that other stuff I said.
+

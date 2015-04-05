@@ -1,7 +1,13 @@
 pre { font-size: 90% }
 
-#slide-3 {
+.nancy-home-page {
   background: url('nancyfx-home.png');
+  background-size: cover;
+  color: #eee;
+}
+
+.diagnostics-page {
+  background: url('diagnostics.png');
   background-size: cover;
   color: #eee;
 }

@@ -394,8 +394,14 @@ pre .chunk {
 
 pre { font-size: 90% }
 
-#slide-3 {
+.nancy-home-page {
   background: url('nancyfx-home.png');
+  background-size: cover;
+  color: #eee;
+}
+
+.diagnostics-page {
+  background: url('diagnostics.png');
   background-size: cover;
   color: #eee;
 }
@@ -419,7 +425,7 @@ pre { font-size: 90% }
 </blockquote>
 </section>
   </div>
-  <div class="slide hidden " id="slide-3">
+  <div class="slide hidden  nancy-home-page" id="slide-3">
     <section class="slide-content"></section>
   </div>
   <div class="slide hidden " id="slide-4">
@@ -461,7 +467,11 @@ end</code></pre>
   </div>
   <div class="slide hidden " id="slide-8">
     <section class="slide-content"><h3 id="the-super-duper-happy-path">The super-duper-happy-path</h3>
-<p>“It just works”</p>
+<p><img src="sdhp.gif" alt="sdhp"></p>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-9">
+    <section class="slide-content"><h3 id="it-just-works">It just works</h3>
 <ul>
 <li>Modules automatically discovered</li>
 <li>Multiple view engines per application</li>
@@ -469,7 +479,7 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-9">
+  <div class="slide hidden " id="slide-10">
     <section class="slide-content"><h3 id="easily-customizable">Easily Customizable</h3>
 <ul>
 <li>Use any IOC container</li>
@@ -478,7 +488,7 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-10">
+  <div class="slide hidden " id="slide-11">
     <section class="slide-content"><h3 id="low-ceremony">Low Ceremony</h3>
 <ul>
 <li>Minimal code</li>
@@ -486,7 +496,7 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-11">
+  <div class="slide hidden " id="slide-12">
     <section class="slide-content"><h3 id="low-friction">Low Friction</h3>
 <ul>
 <li>Stays out of the way</li>
@@ -495,12 +505,12 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-12">
+  <div class="slide hidden " id="slide-13">
     <section class="slide-content"><h3 id="demo">Demo</h3>
 <p><a href="https://dotnetfiddle.net/yWSvP8">https://dotnetfiddle.net/yWSvP8</a></p>
 </section>
   </div>
-  <div class="slide hidden " id="slide-13">
+  <div class="slide hidden " id="slide-14">
     <section class="slide-content"><h3 id="bootstrapper">Bootstrapper</h3>
 <p>To change the runtime behavior of Nancy, write a custom bootstrapper</p>
 <pre><code>public class CustomBootstrapper : DefaultNancyBootstrapper
@@ -514,7 +524,7 @@ end</code></pre>
 }</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-14">
+  <div class="slide hidden " id="slide-15">
     <section class="slide-content"><h3 id="tinyioc">TinyIoC</h3>
 <ul>
 <li>Default implementation uses TinyIoC</li>
@@ -523,7 +533,7 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-15">
+  <div class="slide hidden " id="slide-16">
     <section class="slide-content"><h3 id="other-ioc-s">Other IoC&#39;s</h3>
 <ul>
 <li>TinyIoC be swapped out with a container of your choice</li>
@@ -531,7 +541,7 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-16">
+  <div class="slide hidden " id="slide-17">
     <section class="slide-content"><h3 id="views">Views</h3>
 <ul>
 <li>You get a lot of choices...</li>
@@ -539,7 +549,7 @@ end</code></pre>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-17">
+  <div class="slide hidden " id="slide-18">
     <section class="slide-content"><h3 id="resolving-views-from-routes">Resolving Views from Routes</h3>
 <pre><code>Get[&quot;/customers&quot;] = p =&gt; View[&quot;customers.html&quot;, someModel];
 
@@ -549,7 +559,7 @@ Get[&quot;data/customers&quot;] =
     p =&gt; View[&quot;customers.html&quot;, someModel];</code></pre>
 </section>
   </div>
-  <div class="slide hidden  " id="slide-18">
+  <div class="slide hidden  " id="slide-19">
     <section class="slide-content"><h3 id="resolving-views-from-models">Resolving Views from Models</h3>
 <pre><code>Get[&quot;/customers&quot;] = p =&gt; View[customersModel];</code></pre>
 <ol>
@@ -559,7 +569,7 @@ Get[&quot;data/customers&quot;] =
 </ol>
 </section>
   </div>
-  <div class="slide hidden  " id="slide-19">
+  <div class="slide hidden  " id="slide-20">
     <section class="slide-content"><h3 id="custom-view-conventions">Custom View Conventions</h3>
 <pre><code>public class CustomBootstrapper : DefaultNancyBootstrapper
 {
@@ -577,7 +587,7 @@ Get[&quot;data/customers&quot;] =
 }</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-20">
+  <div class="slide hidden " id="slide-21">
     <section class="slide-content"><h3 id="roll-your-own">Roll Your Own</h3>
 <ul>
 <li>Implement <code>IConvention</code></li>
@@ -585,7 +595,7 @@ Get[&quot;data/customers&quot;] =
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-21">
+  <div class="slide hidden " id="slide-22">
     <section class="slide-content"><h3 id="view-engines">View Engines</h3>
 <p>You get a lot of choices...</p>
 <ul>
@@ -598,7 +608,7 @@ Get[&quot;data/customers&quot;] =
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-22">
+  <div class="slide hidden " id="slide-23">
     <section class="slide-content"><h3 id="super-simple-view-engine">Super Simple View Engine</h3>
 <pre><code>@Master[&#39;MasterPage&#39;]
 
@@ -616,13 +626,13 @@ Get[&quot;data/customers&quot;] =
 @EndSection</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-23">
+  <div class="slide hidden " id="slide-24">
     <section class="slide-content"><h3 id="razor">Razor</h3>
 <pre><code>PM&gt; Install-Package Nancy.ViewEngines.Razor</code></pre>
 <p><code>@Model</code> not <code>@model</code> like in ASP.NET MVC</p>
 </section>
   </div>
-  <div class="slide hidden " id="slide-24">
+  <div class="slide hidden " id="slide-25">
     <section class="slide-content"><h3 id="routes">Routes</h3>
 <pre><code>// captures routes like /hello/nancy sent as a GET request
 
@@ -638,7 +648,7 @@ Get[&quot;/favoriteNumber/{value:int}&quot;] = parameters =&gt; {
 };</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-25">
+  <div class="slide hidden " id="slide-26">
     <section class="slide-content"><h3 id="routes-continued-">Routes (continued)</h3>
 <pre><code>// captures routes like /products/1034 
 // sent as a DELETE request
@@ -655,7 +665,7 @@ Post[&quot;/users/{id}/add/{category}&quot;] = parameters =&gt; {
 };</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-26">
+  <div class="slide hidden " id="slide-27">
     <section class="slide-content"><h3 id="routes-contraints-">Routes (Contraints)</h3>
 <p>  int
 , long
@@ -677,24 +687,29 @@ Post[&quot;/users/{id}/add/{category}&quot;] = parameters =&gt; {
 ParameterizedRouteSegmentConstraintBase&lt;T&gt;</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-27">
+  <div class="slide hidden " id="slide-28">
     <section class="slide-content"><h3 id="model-binding">Model Binding</h3>
 <pre><code>var model = this.Bind&lt;Foo&gt;();</code></pre>
-<h4 id="serialization">Serialization</h4>
+<p><strong>Serialization</strong></p>
 <ul>
 <li>collect from the body (JSON, XML, Forms)</li>
 <li>collect from captured parameters</li>
 <li>collect from query strings</li>
 </ul>
-<h4 id="deserialization">Deserialization</h4>
+<p><strong>Deserialization</strong></p>
 <ul>
 <li>JSON and XML</li>
 <li>Roll your own</li>
 </ul>
 </section>
   </div>
-  <div class="slide hidden " id="slide-28">
+  <div class="slide hidden " id="slide-29">
     <section class="slide-content"><h3 id="testing">Testing</h3>
+<p><img src="nancy.testing.png" alt="nancy.testing"></p>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-30">
+    <section class="slide-content"><h3 id="headless-testing">Headless Testing</h3>
 <pre><code>[Fact]
 public void Should_return_status_ok_when_route_exists()
 {
@@ -709,10 +724,10 @@ public void Should_return_status_ok_when_route_exists()
 }</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-29">
+  <div class="slide hidden " id="slide-31">
     <section class="slide-content"><h3 id="being-assertive">Being Assertive</h3>
 <pre><code>[Fact]
-public void Should_redirect_to_login_with_error_details_incorrect()
+public void Should_redirect_to_login_error_details_incorrect()
 {
     var bootstrapper = new DefaultNancyBootstrapper();
     var browser = new Browser(bootstrapper);
@@ -728,7 +743,7 @@ public void Should_redirect_to_login_with_error_details_incorrect()
 }</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-30">
+  <div class="slide hidden " id="slide-32">
     <section class="slide-content"><h3 id="assert-content">Assert Content</h3>
 <pre><code>[Fact]
 public void Should_display_error_message_when_error_passed()
@@ -750,33 +765,76 @@ public void Should_display_error_message_when_error_passed()
 }</code></pre>
 </section>
   </div>
-  <div class="slide hidden " id="slide-31">
-    <section class="slide-content"><h3 id="content-negotiation">Content Negotiation</h3>
-</section>
-  </div>
-  <div class="slide hidden " id="slide-32">
-    <section class="slide-content"><h3 id="static-content">Static Content</h3>
-</section>
-  </div>
   <div class="slide hidden " id="slide-33">
-    <section class="slide-content"><h3 id="authentication">Authentication</h3>
+    <section class="slide-content"><h3 id="content-negotiation">Content Negotiation</h3>
+<pre><code>Get[&quot;/&quot;] = parameters =&gt; {
+  return new MyModel();
+};</code></pre>
+<p>The content negotiation pipeline will inspect the incoming Accept headers and determine which of the requested media types is the most suitable and format the response accordingly.</p>
 </section>
   </div>
   <div class="slide hidden " id="slide-34">
-    <section class="slide-content"><h3 id="diagnostics">Diagnostics</h3>
+    <section class="slide-content"><h3 id="file-extension-hotwiring">File Extension Hotwiring</h3>
+<pre><code>Get[&quot;/ratpack&quot;] = parameters =&gt; {
+    return new RatPack {FirstName = &quot;Nancy &quot;});
+};</code></pre>
+<ul>
+<li>/ratpack.json =&gt; json response</li>
+<li>/ratpack.xml =&gt; xml response</li>
+</ul>
 </section>
   </div>
   <div class="slide hidden " id="slide-35">
-    <section class="slide-content"><h3 id="in-conclusion">In Conclusion</h3>
+    <section class="slide-content"><h3 id="static-content">Static Content</h3>
+<p><strong>TL;DR: stick stuff in <code>/Content</code> .. done.</strong></p>
 </section>
   </div>
   <div class="slide hidden " id="slide-36">
-    <section class="slide-content"><h3 id="slides">Slides</h3>
-<p><a href="https://github.com/mike-ward/talk-nancyfx">https://github.com/mike-ward/talk-nancyfx</a></p>
-<p>Use the <code>gh-pages</code> branch.</p>
+    <section class="slide-content"><h3 id="define-your-own-convention-s-">Define your own Convention(s)</h3>
+<pre><code>public class CustomBoostrapper : DefaultNancyBootstrapper
+{
+    protected override void 
+        ConfigureConventions(NancyConventions conventions)
+    {
+        base.ConfigureConventions(conventions);
+
+        conventions.StaticContentsConventions.Add(
+            StaticContentConventionBuilder.AddDirectory
+            (&quot;assets&quot;, @&quot;contentFolder/subFolder&quot;)
+        );
+    }
+}</code></pre>
 </section>
   </div>
-  <div class="slide hidden" id="slide-37">
+  <div class="slide hidden " id="slide-37">
+    <section class="slide-content"><h3 id="authentication">Authentication</h3>
+<p>Short Answer: No built-in authentication</p>
+<p>Longer Answer: Extension points allow you to add authentication that fits your business needs.</p>
+<h3 id="supported-authentication-packages">Supported Authentication Packages</h3>
+<ul>
+<li>Forms (<code>Nancy.Authentication.Forms</code>)</li>
+<li>Basic (<code>Nancy.Authentication.Basic</code>)</li>
+<li>Stateless (<code>Nancy.Authentication.Stateless</code>)</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-38">
+    <section class="slide-content"><h3 id="diagnostics">Diagnostics</h3>
+<pre><code>protected override DiagnosticsConfiguration DiagnosticsConfiguration 
+    =&gt; new DiagnosticsConfiguration { Password = @&quot;secret&quot; };</code></pre>
+</section>
+  </div>
+  <div class="slide hidden  diagnostics-page" id="slide-39">
+    <section class="slide-content"></section>
+  </div>
+  <div class="slide hidden " id="slide-40">
+    <section class="slide-content"><h3 id="why-nancy-">Why Nancy?</h3>
+<p><strong>Because it Rocks!</strong></p>
+<p><img src="rocking.jpg" alt="rocking"></p>
+<p>Oh, and all that other stuff I said.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-41">
     <section class="slide-content"><div class="author">
   <h1 class="name">Mike Ward</h1>
     <h3 class="twitter">
