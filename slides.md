@@ -398,15 +398,18 @@ Longer Answer: Extension points allow you to add authentication that fits your b
 - Stateless (`Nancy.Authentication.Stateless`)
 
 --
+### Authentication Example
 
-    public ShowStudyModule(ILicense license)
+    public class ShowStudyModule: NancyModule
     {
-        this.RequiresAuthentication();
-        this.RequiresClaims(new[] {"admin"});
-        this.RequiresLicense(license);
-
-        Get["/show/{studyid}"] = p => View["show", p.studyid];
-        ...
+      public ShowStudyModule(ILicense license)
+      {
+          this.RequiresAuthentication();
+          this.RequiresClaims(new[] {"admin"});
+          this.RequiresLicense(license);
+  
+          Get["/show/{studyid}"] = p => View["show", p.studyid];
+          ...
 
 --
 ### Diagnostics
