@@ -424,7 +424,7 @@ Longer Answer: Extension points allow you to add authentication that fits your b
 --
 ### Open Source
 
-![opensource](C:/Users/Mike/Documents/GitHub/talk-nancyfx/opensource.png)
+![opensource](opensource.png)
 
 <https://github.com/NancyFx>
 
