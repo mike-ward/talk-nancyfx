@@ -130,13 +130,10 @@ To change the runtime behavior of Nancy, write a custom bootstrapper
 --
 ### Resolving Views from Routes
 
+    Get["/customers"] = p => View["customers.html"];
 
-    Get["/customers"] = p => View["customers.html", someModel];
-
-    Get["/customers"] = p => View["customers.html", someModel];
-
-    Get["data/customers"] = 
-        p => View["customers.html", someModel];
+1. Look in the Views folder
+2. Look in the `\customers` folder
  
 -- 
 ### Resolving Views from Models
@@ -401,6 +398,17 @@ Longer Answer: Extension points allow you to add authentication that fits your b
 - Stateless (`Nancy.Authentication.Stateless`)
 
 --
+
+    public ShowStudyModule(ILicense license)
+    {
+        this.RequiresAuthentication();
+        this.RequiresClaims(new[] {"admin"});
+        this.RequiresLicense(license);
+
+        Get["/show/{studyid}"] = p => View["show", p.studyid];
+        ...
+
+--
 ### Diagnostics
 
 
@@ -410,6 +418,12 @@ Longer Answer: Extension points allow you to add authentication that fits your b
 
 -- diagnostics-page
 
+--
+### Open Source
+
+![opensource](C:/Users/Mike/Documents/GitHub/talk-nancyfx/opensource.png)
+
+<https://github.com/NancyFx>
 
 --
 ### Why Nancy?
