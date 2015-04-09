@@ -392,7 +392,8 @@ pre .chunk {
   color: #aaa
 }
 
-pre { font-size: 90% }
+pre { font-size: 90%; background: #efefef; }
+code { background: #efefef; }
 
 .nancy-home-page {
   background: url('nancyfx-home.png');
@@ -405,6 +406,7 @@ pre { font-size: 90% }
   background-size: cover;
   color: #eee;
 }
+
   </style>
 </head>
 <body>
@@ -440,16 +442,16 @@ pre { font-size: 90% }
   </div>
   <div class="slide hidden " id="slide-6">
     <section class="slide-content"><h3 id="sinatra-ruby-">Sinatra (Ruby)</h3>
-<pre><code>#!/usr/bin/env ruby
-require &#39;sinatra&#39;
+<pre><code class="lang-ruby"><span class="comment">#!/usr/bin/env ruby</span>
+<span class="keyword">require</span> <span class="string">'sinatra'</span>
 
-get &#39;/&#39; do
-  redirect to(&#39;/hello/World&#39;)
-end
+get <span class="string">'/'</span> <span class="keyword">do</span>
+  redirect to(<span class="string">'/hello/World'</span>)
+<span class="keyword">end</span>
 
-get &#39;/hello/:name&#39; do
-  &quot;Hello #{params[:name]}!&quot;
-end</code></pre>
+get <span class="string">'/hello/:name'</span> <span class="keyword">do</span>
+  <span class="string">"Hello <span class="subst">#{params[<span class="symbol">:name</span>]}</span>!"</span>
+<span class="keyword">end</span></code></pre>
 </section>
   </div>
   <div class="slide hidden " id="slide-7">
@@ -513,13 +515,13 @@ end</code></pre>
   <div class="slide hidden " id="slide-14">
     <section class="slide-content"><h3 id="bootstrapper">Bootstrapper</h3>
 <p>To change the runtime behavior of Nancy, write a custom bootstrapper</p>
-<pre><code>public class CustomBootstrapper : DefaultNancyBootstrapper
+<pre><code class="lang-cs"><span class="keyword">public</span> <span class="keyword">class</span> CustomBootstrapper : DefaultNancyBootstrapper
 {
-    protected override void ApplicationStartup(
+    <span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> ApplicationStartup(
         TinyIoCContainer container, 
         IPipelines pipelines)
     {
-         // your customization goes here
+         <span class="comment">// your customization goes here</span>
     }
 }</code></pre>
 </section>
@@ -551,7 +553,7 @@ end</code></pre>
   </div>
   <div class="slide hidden " id="slide-18">
     <section class="slide-content"><h3 id="resolving-views-from-routes">Resolving Views from Routes</h3>
-<pre><code>Get[&quot;/customers&quot;] = p =&gt; View[&quot;customers.html&quot;];</code></pre>
+<pre><code class="lang-cs">Get[<span class="string">"/customers"</span>] = p =&gt; View[<span class="string">"customers.html"</span>];</code></pre>
 <ol>
 <li>Look in the Views folder</li>
 <li>Look in the <code>\customers</code> folder</li>
@@ -560,7 +562,7 @@ end</code></pre>
   </div>
   <div class="slide hidden  " id="slide-19">
     <section class="slide-content"><h3 id="resolving-views-from-models">Resolving Views from Models</h3>
-<pre><code>Get[&quot;/customers&quot;] = p =&gt; View[customersModel];</code></pre>
+<pre><code class="lang-cs">Get[<span class="string">"/customers"</span>] = p =&gt; View[customersModel];</code></pre>
 <ol>
 <li>Strip off <code>Model</code> if there</li>
 <li>Look in Views folder</li>
@@ -570,9 +572,9 @@ end</code></pre>
   </div>
   <div class="slide hidden  " id="slide-20">
     <section class="slide-content"><h3 id="custom-view-conventions">Custom View Conventions</h3>
-<pre><code>public class CustomBootstrapper : DefaultNancyBootstrapper
+<pre><code class="lang-cs"><span class="keyword">public</span> <span class="keyword">class</span> CustomBootstrapper : DefaultNancyBootstrapper
 {
-    protected override void ApplicationStartup(
+    <span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> ApplicationStartup(
         TinyIoCContainer container, 
         Nancy.Bootstrapper.IPipelines pipelines)
     {
@@ -580,7 +582,7 @@ end</code></pre>
             .ViewLocationConventions
             .Add((viewName, model, context) =&gt;
         {
-            return string.Concat(&quot;custom/&quot;, viewName);
+            <span class="keyword">return</span> <span class="keyword">string</span>.Concat(<span class="string">"custom/"</span>, viewName);
         });
     }
 }</code></pre>
@@ -609,58 +611,56 @@ end</code></pre>
   </div>
   <div class="slide hidden " id="slide-23">
     <section class="slide-content"><h3 id="super-simple-view-engine">Super Simple View Engine</h3>
-<pre><code>@Master[&#39;MasterPage&#39;]
+<pre><code class="lang-xml">@Master['MasterPage']
 
-@Section[&#39;Content&#39;]
-    &lt;p&gt;This content from the index page&lt;p&gt;
-    &lt;h3&gt;Partials&lt;/h3&gt;
-    &lt;p&gt;Partial view with no model.&lt;/p&gt;
-    &lt;div id=&quot;login&quot;&gt;@Partial[&#39;login&#39;];&lt;/div&gt;
-    &lt;p&gt;Partial with a sub-model passed in.&lt;/p&gt;
-    &lt;p&gt;Iterate with Each&lt;/p&gt;
-    &lt;div id=&quot;users&quot;&gt;@Partial[&#39;user&#39;, Model.Users];&lt;/div&gt;
-    &lt;h3&gt;Encoding&lt;/h3&gt;
-    &lt;p&gt;Model output can also be encoded:&lt;/p&gt;
-    &lt;p&gt;@!Model.NaughtyStuff&lt;/p&gt;
+@Section['Content']
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>This content from the index page<span class="tag">&lt;<span class="title">p</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">h3</span>&gt;</span>Partials<span class="tag">&lt;/<span class="title">h3</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>Partial view with no model.<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"login"</span>&gt;</span>@Partial['login'];<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>Partial with a sub-model passed in.<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>Iterate with Each<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"users"</span>&gt;</span>@Partial['user', Model.Users];<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">h3</span>&gt;</span>Encoding<span class="tag">&lt;/<span class="title">h3</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>Model output can also be encoded:<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>@!Model.NaughtyStuff<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
 @EndSection</code></pre>
 </section>
   </div>
   <div class="slide hidden " id="slide-24">
     <section class="slide-content"><h3 id="razor">Razor</h3>
-<pre><code>PM&gt; Install-Package Nancy.ViewEngines.Razor</code></pre>
+<pre><code class="lang-dos">PM&gt; Install-Package Nancy.ViewEngines.Razor</code></pre>
 <p><code>@Model</code> not <code>@model</code> like in ASP.NET MVC</p>
 </section>
   </div>
   <div class="slide hidden " id="slide-25">
     <section class="slide-content"><h3 id="routes">Routes</h3>
-<pre><code>// captures routes like /hello/nancy sent as a GET request
+<pre><code class="lang-cs"><span class="comment">// captures routes like /hello/nancy sent as a GET request</span>
 
-Get[&quot;/hello/{name}&quot;] = parameters =&gt; {
-    return &quot;Hello &quot; + parameters.name;
-};
+Get[<span class="string">"/hello/{name}"</span>] = parameters =&gt; 
+    <span class="string">"Hello "</span> + parameters.name;
 
-// captures routes like /favoriteNumber/1234, 
-// but not /favoriteNumber/asdf as a GET request
+<span class="comment">// captures routes like /favoriteNumber/1234, </span>
+<span class="comment">// but not /favoriteNumber/asdf as a GET request</span>
 
-Get[&quot;/favoriteNumber/{value:int}&quot;] = parameters =&gt; {
-    return &quot;Favorite number is &quot; + parameters.value + &quot;?&quot;;
-};</code></pre>
+Get[<span class="string">"/favoriteNumber/{value:int}"</span>] = parameters =&gt; 
+    <span class="string">"Favorite number is "</span> + parameters.<span class="keyword">value</span> + <span class="string">"?"</span>;</code></pre>
 </section>
   </div>
   <div class="slide hidden " id="slide-26">
     <section class="slide-content"><h3 id="routes-continued-">Routes (continued)</h3>
-<pre><code>// captures routes like /products/1034 
-// sent as a DELETE request
+<pre><code class="lang-cs"><span class="comment">// captures routes like /products/1034 </span>
+<span class="comment">// sent as a DELETE request</span>
 
-Delete[@&quot;/products/(?&lt;id&gt;[\d]{1,7})&quot;] = parameters =&gt; {
-    return 200;
+Delete[<span class="string">@"/products/(?&lt;id&gt;[\d]{1,7})"</span>] = parameters =&gt; {
+    <span class="keyword">return</span> <span class="number">200</span>;
 };
 
-// captures routes like /users/192/add/moderator 
-// sent as a POST request
+<span class="comment">// captures routes like /users/192/add/moderator </span>
+<span class="comment">// sent as a POST request</span>
 
-Post[&quot;/users/{id}/add/{category}&quot;] = parameters =&gt; {
-    return HttpStatusCode.OK;
+Post[<span class="string">"/users/{id}/add/{category}"</span>] = parameters =&gt; {
+    <span class="keyword">return</span> HttpStatusCode.OK;
 };</code></pre>
 </section>
   </div>
@@ -681,14 +681,14 @@ Post[&quot;/users/{id}/add/{category}&quot;] = parameters =&gt; {
 , maxlength(length)
 , length(minimum, maximum)</p>
 <h4 id="custom-contraints">Custom Contraints</h4>
-<pre><code>RouteSegmentConstraintBase&lt;T&gt;
+<pre><code class="lang-cs">RouteSegmentConstraintBase&lt;T&gt;
 
 ParameterizedRouteSegmentConstraintBase&lt;T&gt;</code></pre>
 </section>
   </div>
   <div class="slide hidden " id="slide-28">
     <section class="slide-content"><h3 id="model-binding">Model Binding</h3>
-<pre><code>var model = this.Bind&lt;Foo&gt;();</code></pre>
+<pre><code class="lang-cs"><span class="keyword">var</span> model = <span class="keyword">this</span>.Bind&lt;Foo&gt;();</code></pre>
 <p><strong>Serialization</strong></p>
 <ul>
 <li>collect from the body (JSON, XML, Forms)</li>
@@ -709,13 +709,13 @@ ParameterizedRouteSegmentConstraintBase&lt;T&gt;</code></pre>
   </div>
   <div class="slide hidden " id="slide-30">
     <section class="slide-content"><h3 id="headless-testing">Headless Testing</h3>
-<pre><code>[Fact]
-public void Should_return_status_ok_when_route_exists()
+<pre><code class="lang-cs">[Fact]
+<span class="keyword">public</span> <span class="keyword">void</span> Should_return_status_ok_when_route_exists()
 {
-    var bootstrapper = new DefaultNancyBootstrapper();
-    var browser = new Browser(bootstrapper);
+    <span class="keyword">var</span> bootstrapper = <span class="keyword">new</span> DefaultNancyBootstrapper();
+    <span class="keyword">var</span> browser = <span class="keyword">new</span> Browser(bootstrapper);
 
-    var result = browser.Get(&quot;/&quot;, with =&gt; {
+    <span class="keyword">var</span> result = browser.Get(<span class="string">"/"</span>, with =&gt; {
         with.HttpRequest();
     });
 
@@ -725,58 +725,54 @@ public void Should_return_status_ok_when_route_exists()
   </div>
   <div class="slide hidden " id="slide-31">
     <section class="slide-content"><h3 id="being-assertive">Being Assertive</h3>
-<pre><code>[Fact]
-public void Should_redirect_to_login_error_details_incorrect()
+<pre><code class="lang-cs">[Fact]
+<span class="keyword">public</span> <span class="keyword">void</span> Should_redirect_to_login_error_incorrect()
 {
-    var bootstrapper = new DefaultNancyBootstrapper();
-    var browser = new Browser(bootstrapper);
+    <span class="keyword">var</span> bootstrapper = <span class="keyword">new</span> DefaultNancyBootstrapper();
+    <span class="keyword">var</span> browser = <span class="keyword">new</span> Browser(bootstrapper);
 
-    var response = browser.Post(&quot;/login/&quot;, (with) =&gt; {
+    <span class="keyword">var</span> response = browser.Post(<span class="string">"/login/"</span>, (with) =&gt; {
         with.HttpRequest();
-        with.FormValue(&quot;Username&quot;, &quot;username&quot;);
-        with.FormValue(&quot;Password&quot;, &quot;wrongpassword&quot;);
+        with.FormValue(<span class="string">"Username"</span>, <span class="string">"username"</span>);
+        with.FormValue(<span class="string">"Password"</span>, <span class="string">"wrongpassword"</span>);
     });
 
     response.ShouldHaveRedirectedTo(
-        &quot;/login?error=true&amp;username=username&quot;);
+        <span class="string">"/login?error=true&amp;username=username"</span>);
 }</code></pre>
 </section>
   </div>
   <div class="slide hidden " id="slide-32">
     <section class="slide-content"><h3 id="assert-content">Assert Content</h3>
-<pre><code>[Fact]
-public void Should_display_error_message_when_error_passed()
+<pre><code class="lang-cs">[Fact]
+<span class="keyword">public</span> <span class="keyword">void</span> Should_display_error_message_when_error_passed()
 {
-    var bootstrapper = new DefaultNancyBootstrapper();
-    var browser = new Browser(bootstrapper);
+    <span class="keyword">var</span> bootstrapper = <span class="keyword">new</span> DefaultNancyBootstrapper();
+    <span class="keyword">var</span> browser = <span class="keyword">new</span> Browser(bootstrapper);
 
-    var response = browser.Get(&quot;/login&quot;, (with) =&gt; {
+    <span class="keyword">var</span> response = browser.Get(<span class="string">"/login"</span>, (with) =&gt; {
         with.HttpRequest();
-        with.Query(&quot;error&quot;, &quot;true&quot;);
+        with.Query(<span class="string">"error"</span>, <span class="string">"true"</span>);
     });
 
-    response.Body[&quot;#errorBox&quot;]
+    response.Body[<span class="string">"#errorBox"</span>]
             .ShouldExistOnce()
-            .And.ShouldBeOfClass(&quot;floatingError&quot;)
+            .And.ShouldBeOfClass(<span class="string">"floatingError"</span>)
             .And.ShouldContain(
-                &quot;invalid&quot;,
+                <span class="string">"invalid"</span>,
                 StringComparison.InvariantCultureIgnoreCase);
 }</code></pre>
 </section>
   </div>
   <div class="slide hidden " id="slide-33">
     <section class="slide-content"><h3 id="content-negotiation">Content Negotiation</h3>
-<pre><code>Get[&quot;/&quot;] = parameters =&gt; {
-  return new MyModel();
-};</code></pre>
+<pre><code class="lang-cs">Get[<span class="string">"/"</span>] = parameters =&gt; <span class="keyword">new</span> MyModel();</code></pre>
 <p>The content negotiation pipeline will inspect the incoming Accept headers and determine which of the requested media types is the most suitable and format the response accordingly.</p>
 </section>
   </div>
   <div class="slide hidden " id="slide-34">
     <section class="slide-content"><h3 id="file-extension-hotwiring">File Extension Hotwiring</h3>
-<pre><code>Get[&quot;/ratpack&quot;] = parameters =&gt; {
-    return new RatPack {FirstName = &quot;Nancy &quot;});
-};</code></pre>
+<pre><code class="lang-cs">Get[<span class="string">"/ratpack"</span>] = parameters =&gt; <span class="keyword">new</span> RatPack();</code></pre>
 <ul>
 <li>/ratpack.json =&gt; json response</li>
 <li>/ratpack.xml =&gt; xml response</li>
@@ -790,16 +786,16 @@ public void Should_display_error_message_when_error_passed()
   </div>
   <div class="slide hidden " id="slide-36">
     <section class="slide-content"><h3 id="define-your-own-convention-s-">Define your own Convention(s)</h3>
-<pre><code>public class CustomBoostrapper : DefaultNancyBootstrapper
+<pre><code class="lang-cs"><span class="keyword">public</span> <span class="keyword">class</span> CustomBoostrapper : DefaultNancyBootstrapper
 {
-    protected override void 
+    <span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> 
         ConfigureConventions(NancyConventions conventions)
     {
-        base.ConfigureConventions(conventions);
+        <span class="keyword">base</span>.ConfigureConventions(conventions);
 
         conventions.StaticContentsConventions.Add(
             StaticContentConventionBuilder.AddDirectory
-            (&quot;assets&quot;, @&quot;contentFolder/subFolder&quot;)
+            (<span class="string">"assets"</span>, <span class="string">@"contentFolder/subFolder"</span>)
         );
     }
 }</code></pre>
@@ -814,50 +810,63 @@ public void Should_display_error_message_when_error_passed()
   <div class="slide hidden " id="slide-38">
     <section class="slide-content"><h3 id="supported-authentication-packages">Supported Authentication Packages</h3>
 <ul>
-<li>Forms (<code>Nancy.Authentication.Forms</code>)</li>
-<li>Basic (<code>Nancy.Authentication.Basic</code>)</li>
-<li>Stateless (<code>Nancy.Authentication.Stateless</code>)</li>
+<li>Forms <code>Nancy.Authentication.Forms</code></li>
+<li>Basic <code>Nancy.Authentication.Basic</code></li>
+<li>Stateless <code>Nancy.Authentication.Stateless</code></li>
 </ul>
 </section>
   </div>
   <div class="slide hidden " id="slide-39">
     <section class="slide-content"><h3 id="authentication-example">Authentication Example</h3>
-<pre><code>public class ShowStudyModule: NancyModule
+<pre><code class="lang-cs"><span class="keyword">public</span> <span class="keyword">class</span> ShowStudyModule: NancyModule
 {
-  public ShowStudyModule(ILicense license)
+  <span class="keyword">public</span> ShowStudyModule()
   {
-      this.RequiresAuthentication();
-      this.RequiresClaims(new[] {&quot;admin&quot;});
-      this.RequiresLicense(license);
+      <span class="keyword">this</span>.RequiresAuthentication();
+      <span class="keyword">this</span>.RequiresClaims(<span class="keyword">new</span>[] {<span class="string">"admin"</span>});
 
-      Get[&quot;/show/{studyid}&quot;] = p =&gt; View[&quot;show&quot;, p.studyid];
+      Get[<span class="string">"/show/{studyid}"</span>] = p =&gt; View[<span class="string">"show"</span>, p.studyid];
       ...</code></pre>
 </section>
   </div>
   <div class="slide hidden " id="slide-40">
-    <section class="slide-content"><h3 id="diagnostics">Diagnostics</h3>
-<pre><code>protected override 
-    DiagnosticsConfiguration DiagnosticsConfiguration =&gt;
-    new DiagnosticsConfiguration { Password = @&quot;secret&quot; };</code></pre>
+    <section class="slide-content"><h3 id="authentication-example-extended">Authentication Example Extended</h3>
+<pre><code class="lang-cs"><span class="keyword">public</span> <span class="keyword">class</span> ShowStudyModule: NancyModule
+{
+  <span class="keyword">public</span> ShowStudyModule(ILicense license)
+  {
+      <span class="keyword">this</span>.RequiresAuthentication();
+      <span class="keyword">this</span>.RequiresClaims(<span class="keyword">new</span>[] {<span class="string">"admin"</span>});
+      <span class="keyword">this</span>.RequiresLicense(license);
+
+      Get[<span class="string">"/show/{studyid}"</span>] = p =&gt; View[<span class="string">"show"</span>, p.studyid];
+      ...</code></pre>
 </section>
   </div>
-  <div class="slide hidden  diagnostics-page" id="slide-41">
+  <div class="slide hidden " id="slide-41">
+    <section class="slide-content"><h3 id="diagnostics">Diagnostics</h3>
+<pre><code class="lang-cs"><span class="keyword">protected</span> <span class="keyword">override</span> 
+    DiagnosticsConfiguration DiagnosticsConfiguration =&gt;
+    <span class="keyword">new</span> DiagnosticsConfiguration { Password = <span class="string">@"secret"</span> };</code></pre>
+</section>
+  </div>
+  <div class="slide hidden  diagnostics-page" id="slide-42">
     <section class="slide-content"></section>
   </div>
-  <div class="slide hidden " id="slide-42">
+  <div class="slide hidden " id="slide-43">
     <section class="slide-content"><h3 id="open-source">Open Source</h3>
 <p><img src="opensource.png" alt="opensource"></p>
 <p><a href="https://github.com/NancyFx">https://github.com/NancyFx</a></p>
 </section>
   </div>
-  <div class="slide hidden " id="slide-43">
+  <div class="slide hidden " id="slide-44">
     <section class="slide-content"><h3 id="why-nancy-">Why Nancy?</h3>
 <p><strong>Because it Rocks!</strong></p>
 <p><img src="rocking.jpg" alt="rocking"></p>
 <p>Oh, and all that other stuff I said.</p>
 </section>
   </div>
-  <div class="slide hidden" id="slide-44">
+  <div class="slide hidden" id="slide-45">
     <section class="slide-content"><div class="author">
   <h1 class="name">Mike Ward</h1>
     <h3 class="twitter">

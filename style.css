@@ -1,4 +1,5 @@
-pre { font-size: 90% }
+pre { font-size: 90%; background: #efefef; }
+code { background: #efefef; }
 
 .nancy-home-page {
   background: url('nancyfx-home.png');

@@ -6,6 +6,7 @@ author:
 output: index.html  
 style: style.css
 --
+
 # Nancy
 ## ASP.NET's Super Duper Happy Framework
 
@@ -31,16 +32,18 @@ style: style.css
 --
 ### Sinatra (Ruby)
 
-    #!/usr/bin/env ruby
-    require 'sinatra'
-     
-    get '/' do
-      redirect to('/hello/World')
-    end
-     
-    get '/hello/:name' do
-      "Hello #{params[:name]}!"
-    end
+```ruby
+#!/usr/bin/env ruby
+require 'sinatra'
+ 
+get '/' do
+  redirect to('/hello/World')
+end
+ 
+get '/hello/:name' do
+  "Hello #{params[:name]}!"
+end
+```
 
 --
 ### Built to Run Anywhere
@@ -98,15 +101,17 @@ Runs on existing technologies
 
 To change the runtime behavior of Nancy, write a custom bootstrapper
 
-    public class CustomBootstrapper : DefaultNancyBootstrapper
-    {
-        protected override void ApplicationStartup(
-            TinyIoCContainer container, 
-            IPipelines pipelines)
-        {
-             // your customization goes here
-        }
-    }
+```cs
+public class CustomBootstrapper : DefaultNancyBootstrapper
+{
+	protected override void ApplicationStartup(
+		TinyIoCContainer container, 
+		IPipelines pipelines)
+	{
+		 // your customization goes here
+	}
+}
+```
  
 --
 ### TinyIoC
@@ -130,7 +135,9 @@ To change the runtime behavior of Nancy, write a custom bootstrapper
 --
 ### Resolving Views from Routes
 
-    Get["/customers"] = p => View["customers.html"];
+```cs
+Get["/customers"] = p => View["customers.html"];
+```
 
 1. Look in the Views folder
 2. Look in the `\customers` folder
@@ -138,7 +145,9 @@ To change the runtime behavior of Nancy, write a custom bootstrapper
 -- 
 ### Resolving Views from Models
 
-    Get["/customers"] = p => View[customersModel];
+```cs
+Get["/customers"] = p => View[customersModel];
+```
 
 1. Strip off `Model` if there
 2. Look in Views folder
@@ -147,20 +156,22 @@ To change the runtime behavior of Nancy, write a custom bootstrapper
 -- 
 ### Custom View Conventions
 
-    public class CustomBootstrapper : DefaultNancyBootstrapper
-    {
-        protected override void ApplicationStartup(
-            TinyIoCContainer container, 
-            Nancy.Bootstrapper.IPipelines pipelines)
-        {
-            Conventions
-                .ViewLocationConventions
-                .Add((viewName, model, context) =>
-            {
-                return string.Concat("custom/", viewName);
-            });
-        }
-    }
+```cs
+public class CustomBootstrapper : DefaultNancyBootstrapper
+{
+	protected override void ApplicationStartup(
+		TinyIoCContainer container, 
+		Nancy.Bootstrapper.IPipelines pipelines)
+	{
+		Conventions
+			.ViewLocationConventions
+			.Add((viewName, model, context) =>
+		{
+			return string.Concat("custom/", viewName);
+		});
+	}
+}
+```
 
 --
 ### Roll Your Own
@@ -183,60 +194,66 @@ You get a lot of choices...
 --
 ### Super Simple View Engine
 
-    @Master['MasterPage']
-    
-    @Section['Content']
-        <p>This content from the index page<p>
-        <h3>Partials</h3>
-        <p>Partial view with no model.</p>
-        <div id="login">@Partial['login'];</div>
-        <p>Partial with a sub-model passed in.</p>
-        <p>Iterate with Each</p>
-        <div id="users">@Partial['user', Model.Users];</div>
-        <h3>Encoding</h3>
-        <p>Model output can also be encoded:</p>
-        <p>@!Model.NaughtyStuff</p>
-    @EndSection
+```xml
+@Master['MasterPage']
+
+@Section['Content']
+	<p>This content from the index page<p>
+	<h3>Partials</h3>
+	<p>Partial view with no model.</p>
+	<div id="login">@Partial['login'];</div>
+	<p>Partial with a sub-model passed in.</p>
+	<p>Iterate with Each</p>
+	<div id="users">@Partial['user', Model.Users];</div>
+	<h3>Encoding</h3>
+	<p>Model output can also be encoded:</p>
+	<p>@!Model.NaughtyStuff</p>
+@EndSection
+```
 
 --
 ### Razor
 
-    PM> Install-Package Nancy.ViewEngines.Razor
+```dos
+PM> Install-Package Nancy.ViewEngines.Razor
+```
 
 `@Model` not `@model` like in ASP.NET MVC
 
 --
 ### Routes
 
-    // captures routes like /hello/nancy sent as a GET request
-    
-    Get["/hello/{name}"] = parameters => {
-        return "Hello " + parameters.name;
-    };
-    
-    // captures routes like /favoriteNumber/1234, 
-    // but not /favoriteNumber/asdf as a GET request
-    
-    Get["/favoriteNumber/{value:int}"] = parameters => {
-        return "Favorite number is " + parameters.value + "?";
-    };
+```cs
+// captures routes like /hello/nancy sent as a GET request
+
+Get["/hello/{name}"] = parameters => 
+    "Hello " + parameters.name;
+
+// captures routes like /favoriteNumber/1234, 
+// but not /favoriteNumber/asdf as a GET request
+
+Get["/favoriteNumber/{value:int}"] = parameters => 
+	"Favorite number is " + parameters.value + "?";
+```
 
 --
 ### Routes (continued)
 
-    // captures routes like /products/1034 
-    // sent as a DELETE request
-    
-    Delete[@"/products/(?<id>[\d]{1,7})"] = parameters => {
-        return 200;
-    };
-    
-    // captures routes like /users/192/add/moderator 
-    // sent as a POST request
-    
-    Post["/users/{id}/add/{category}"] = parameters => {
-        return HttpStatusCode.OK;
-    };
+```cs
+// captures routes like /products/1034 
+// sent as a DELETE request
+
+Delete[@"/products/(?<id>[\d]{1,7})"] = parameters => {
+	return 200;
+};
+
+// captures routes like /users/192/add/moderator 
+// sent as a POST request
+
+Post["/users/{id}/add/{category}"] = parameters => {
+	return HttpStatusCode.OK;
+};
+```
 
 --
 ### Routes (Contraints)
@@ -258,14 +275,18 @@ You get a lot of choices...
 
 #### Custom Contraints
 
-    RouteSegmentConstraintBase<T>
-    
-    ParameterizedRouteSegmentConstraintBase<T>
+```cs
+RouteSegmentConstraintBase<T>
+
+ParameterizedRouteSegmentConstraintBase<T>
+```
 
 --
 ### Model Binding
 
-    var model = this.Bind<Foo>();
+```cs
+var model = this.Bind<Foo>();
+```
 
 **Serialization**
 
@@ -287,75 +308,81 @@ You get a lot of choices...
 --
 ### Headless Testing
 
-    [Fact]
-    public void Should_return_status_ok_when_route_exists()
-    {
-        var bootstrapper = new DefaultNancyBootstrapper();
-        var browser = new Browser(bootstrapper);
-    
-        var result = browser.Get("/", with => {
-            with.HttpRequest();
-        });
-    
-        Assert.Equal(HttpStatusCode.OK, result.StatusCode);
-    }
+```cs
+[Fact]
+public void Should_return_status_ok_when_route_exists()
+{
+	var bootstrapper = new DefaultNancyBootstrapper();
+	var browser = new Browser(bootstrapper);
+
+	var result = browser.Get("/", with => {
+		with.HttpRequest();
+	});
+
+	Assert.Equal(HttpStatusCode.OK, result.StatusCode);
+}
+```
 
 --
 ### Being Assertive
 
-    [Fact]
-    public void Should_redirect_to_login_error_details_incorrect()
-    {
-        var bootstrapper = new DefaultNancyBootstrapper();
-        var browser = new Browser(bootstrapper);
-    
-        var response = browser.Post("/login/", (with) => {
-            with.HttpRequest();
-            with.FormValue("Username", "username");
-            with.FormValue("Password", "wrongpassword");
-        });
-    
-        response.ShouldHaveRedirectedTo(
-            "/login?error=true&username=username");
-    }
+```cs
+[Fact]
+public void Should_redirect_to_login_error_incorrect()
+{
+    var bootstrapper = new DefaultNancyBootstrapper();
+    var browser = new Browser(bootstrapper);
+
+    var response = browser.Post("/login/", (with) => {
+        with.HttpRequest();
+        with.FormValue("Username", "username");
+        with.FormValue("Password", "wrongpassword");
+    });
+
+    response.ShouldHaveRedirectedTo(
+        "/login?error=true&username=username");
+}
+```
 
 --
 ### Assert Content
 
-    [Fact]
-    public void Should_display_error_message_when_error_passed()
-    {
-        var bootstrapper = new DefaultNancyBootstrapper();
-        var browser = new Browser(bootstrapper);
-    
-        var response = browser.Get("/login", (with) => {
-            with.HttpRequest();
-            with.Query("error", "true");
-        });
-    
-        response.Body["#errorBox"]
-                .ShouldExistOnce()
-                .And.ShouldBeOfClass("floatingError")
-                .And.ShouldContain(
-                    "invalid",
-                    StringComparison.InvariantCultureIgnoreCase);
-    }
+```cs
+[Fact]
+public void Should_display_error_message_when_error_passed()
+{
+	var bootstrapper = new DefaultNancyBootstrapper();
+	var browser = new Browser(bootstrapper);
+
+	var response = browser.Get("/login", (with) => {
+		with.HttpRequest();
+		with.Query("error", "true");
+	});
+
+	response.Body["#errorBox"]
+			.ShouldExistOnce()
+			.And.ShouldBeOfClass("floatingError")
+			.And.ShouldContain(
+				"invalid",
+				StringComparison.InvariantCultureIgnoreCase);
+}
+```
 
 --
 ### Content Negotiation
 
-    Get["/"] = parameters => {
-      return new MyModel();
-    };
+```cs
+Get["/"] = parameters => new MyModel();
+```
     
 The content negotiation pipeline will inspect the incoming Accept headers and determine which of the requested media types is the most suitable and format the response accordingly.
 
 --
 ### File Extension Hotwiring
 
-    Get["/ratpack"] = parameters => {
-        return new RatPack {FirstName = "Nancy "});
-    };
+```cs
+Get["/ratpack"] = parameters => new RatPack();
+```
 
 - /ratpack.json => json response
 - /ratpack.xml => xml response
@@ -369,19 +396,21 @@ The content negotiation pipeline will inspect the incoming Accept headers and de
 --
 ### Define your own Convention(s)
 
-    public class CustomBoostrapper : DefaultNancyBootstrapper
-    {
-        protected override void 
-            ConfigureConventions(NancyConventions conventions)
-        {
-            base.ConfigureConventions(conventions);
-    
-            conventions.StaticContentsConventions.Add(
-                StaticContentConventionBuilder.AddDirectory
-                ("assets", @"contentFolder/subFolder")
-            );
-        }
-    }
+```cs
+public class CustomBoostrapper : DefaultNancyBootstrapper
+{
+	protected override void 
+		ConfigureConventions(NancyConventions conventions)
+	{
+		base.ConfigureConventions(conventions);
+
+		conventions.StaticContentsConventions.Add(
+			StaticContentConventionBuilder.AddDirectory
+			("assets", @"contentFolder/subFolder")
+		);
+	}
+}
+```
 
 --
 ### Authentication
@@ -393,31 +422,48 @@ Longer Answer: Extension points allow you to add authentication that fits your b
 --
 ### Supported Authentication Packages
 
-- Forms (`Nancy.Authentication.Forms`)
-- Basic (`Nancy.Authentication.Basic`)
-- Stateless (`Nancy.Authentication.Stateless`)
+- Forms `Nancy.Authentication.Forms`
+- Basic `Nancy.Authentication.Basic`
+- Stateless `Nancy.Authentication.Stateless`
 
 --
 ### Authentication Example
 
-    public class ShowStudyModule: NancyModule
-    {
-      public ShowStudyModule(ILicense license)
-      {
-          this.RequiresAuthentication();
-          this.RequiresClaims(new[] {"admin"});
-          this.RequiresLicense(license);
-  
-          Get["/show/{studyid}"] = p => View["show", p.studyid];
-          ...
+```cs
+public class ShowStudyModule: NancyModule
+{
+  public ShowStudyModule()
+  {
+	  this.RequiresAuthentication();
+	  this.RequiresClaims(new[] {"admin"});
+
+	  Get["/show/{studyid}"] = p => View["show", p.studyid];
+	  ...
+```
+--
+### Authentication Example Extended
+
+```cs
+public class ShowStudyModule: NancyModule
+{
+  public ShowStudyModule(ILicense license)
+  {
+	  this.RequiresAuthentication();
+	  this.RequiresClaims(new[] {"admin"});
+	  this.RequiresLicense(license);
+
+	  Get["/show/{studyid}"] = p => View["show", p.studyid];
+	  ...
+```
 
 --
 ### Diagnostics
 
-
-    protected override 
-        DiagnosticsConfiguration DiagnosticsConfiguration =>
-        new DiagnosticsConfiguration { Password = @"secret" };
+```cs
+protected override 
+    DiagnosticsConfiguration DiagnosticsConfiguration =>
+    new DiagnosticsConfiguration { Password = @"secret" };
+```
 
 -- diagnostics-page
 
