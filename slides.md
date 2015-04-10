@@ -446,6 +446,19 @@ public class ShowStudyModule: NancyModule
 	  Get["/show/{studyid}"] = p => View["show", p.studyid];
 	  ...
 ```
+--
+### RequiresLicense Implementation
+
+```cs
+public static void RequiresLicense(
+    this INancyModule module, ILicense license)
+{
+    module.Before.AddItemToEndOfPipeline(context =>
+        license == null || !license.ValidLicense
+            ? module.Response.AsRedirect("~/license-status")
+            : null);
+}
+```
 
 --
 ### Diagnostics

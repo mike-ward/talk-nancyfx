@@ -840,29 +840,41 @@ ParameterizedRouteSegmentConstraintBase&lt;T&gt;</code></pre>
 </section>
   </div>
   <div class="slide hidden " id="slide-41">
+    <section class="slide-content"><h3 id="requireslicense-implementation">RequiresLicense Implementation</h3>
+<pre><code class="lang-cs"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> RequiresLicense(
+    <span class="keyword">this</span> INancyModule module, ILicense license)
+{
+    module.Before.AddItemToEndOfPipeline(context =&gt;
+        license == <span class="keyword">null</span> || !license.ValidLicense
+            ? module.Response.AsRedirect(<span class="string">"~/license-status"</span>)
+            : <span class="keyword">null</span>);
+}</code></pre>
+</section>
+  </div>
+  <div class="slide hidden " id="slide-42">
     <section class="slide-content"><h3 id="diagnostics">Diagnostics</h3>
 <pre><code class="lang-cs"><span class="keyword">protected</span> <span class="keyword">override</span> 
     DiagnosticsConfiguration DiagnosticsConfiguration =&gt;
     <span class="keyword">new</span> DiagnosticsConfiguration { Password = <span class="string">@"secret"</span> };</code></pre>
 </section>
   </div>
-  <div class="slide hidden  diagnostics-page" id="slide-42">
+  <div class="slide hidden  diagnostics-page" id="slide-43">
     <section class="slide-content"></section>
   </div>
-  <div class="slide hidden " id="slide-43">
+  <div class="slide hidden " id="slide-44">
     <section class="slide-content"><h3 id="open-source">Open Source</h3>
 <p><img src="opensource.png" alt="opensource"></p>
 <p><a href="https://github.com/NancyFx">https://github.com/NancyFx</a></p>
 </section>
   </div>
-  <div class="slide hidden " id="slide-44">
+  <div class="slide hidden " id="slide-45">
     <section class="slide-content"><h3 id="why-nancy-">Why Nancy?</h3>
 <p><strong>Because it Rocks!</strong></p>
 <p><img src="rocking.jpg" alt="rocking"></p>
 <p>Oh, and all that other stuff I said.</p>
 </section>
   </div>
-  <div class="slide hidden" id="slide-45">
+  <div class="slide hidden" id="slide-46">
     <section class="slide-content"><div class="author">
   <h1 class="name">Mike Ward</h1>
     <h3 class="twitter">
