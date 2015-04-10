@@ -1,5 +1,10 @@
-pre { font-size: 90%; background: #efefef; }
+pre { font-size: 90%;  background: #efefef; }
 code { background: #efefef; }
+
+.slide-content {
+	width: 900px;
+	height: 800px;
+}
 
 .nancy-home-page {
   background: url('nancyfx-home.png');

@@ -392,8 +392,13 @@ pre .chunk {
   color: #aaa
 }
 
-pre { font-size: 90%; background: #efefef; }
+pre { font-size: 90%;  background: #efefef; }
 code { background: #efefef; }
+
+.slide-content {
+	width: 900px;
+	height: 800px;
+}
 
 .nancy-home-page {
   background: url('nancyfx-home.png');
@@ -553,7 +558,7 @@ get <span class="string">'/hello/:name'</span> <span class="keyword">do</span>
   </div>
   <div class="slide hidden " id="slide-18">
     <section class="slide-content"><h3 id="resolving-views-from-routes">Resolving Views from Routes</h3>
-<pre><code class="lang-cs">Get[<span class="string">"/customers"</span>] = p =&gt; View[<span class="string">"customers.html"</span>];</code></pre>
+<pre><code class="lang-cs">Get[<span class="string">"/customers"</span>] = p =&gt; View[<span class="string">"customers.cshtml"</span>];</code></pre>
 <ol>
 <li>Look in the Views folder</li>
 <li>Look in the <code>\customers</code> folder</li>
@@ -637,14 +642,12 @@ get <span class="string">'/hello/:name'</span> <span class="keyword">do</span>
     <section class="slide-content"><h3 id="routes">Routes</h3>
 <pre><code class="lang-cs"><span class="comment">// captures routes like /hello/nancy sent as a GET request</span>
 
-Get[<span class="string">"/hello/{name}"</span>] = parameters =&gt; 
-    <span class="string">"Hello "</span> + parameters.name;
+Get[<span class="string">"/hello/{name}"</span>] = p =&gt; <span class="string">"Hello "</span> + p.name;
 
-<span class="comment">// captures routes like /favoriteNumber/1234, </span>
-<span class="comment">// but not /favoriteNumber/asdf as a GET request</span>
+<span class="comment">// captures routes like /mynumber/1234, </span>
+<span class="comment">// but not /mynumber/asdf as a GET request</span>
 
-Get[<span class="string">"/favoriteNumber/{value:int}"</span>] = parameters =&gt; 
-    <span class="string">"Favorite number is "</span> + parameters.<span class="keyword">value</span> + <span class="string">"?"</span>;</code></pre>
+Get[<span class="string">"/mynumber/{value:int}"</span>] = p =&gt; $<span class="string">"Your number is {p.value}"</span>;</code></pre>
 </section>
   </div>
   <div class="slide hidden " id="slide-26">
@@ -652,16 +655,12 @@ Get[<span class="string">"/favoriteNumber/{value:int}"</span>] = parameters =&gt
 <pre><code class="lang-cs"><span class="comment">// captures routes like /products/1034 </span>
 <span class="comment">// sent as a DELETE request</span>
 
-Delete[<span class="string">@"/products/(?&lt;id&gt;[\d]{1,7})"</span>] = parameters =&gt; {
-    <span class="keyword">return</span> <span class="number">200</span>;
-};
+Delete[<span class="string">@"/products/(?&lt;id&gt;[\d]{1,7})"</span>] = p =&gt; HttpStatusCode.OK;
 
 <span class="comment">// captures routes like /users/192/add/moderator </span>
 <span class="comment">// sent as a POST request</span>
 
-Post[<span class="string">"/users/{id}/add/{category}"</span>] = parameters =&gt; {
-    <span class="keyword">return</span> HttpStatusCode.OK;
-};</code></pre>
+Post[<span class="string">"/users/{id}/add/{category}"</span>] = p =&gt; HttpStatusCode.OK;</code></pre>
 </section>
   </div>
   <div class="slide hidden " id="slide-27">
@@ -715,10 +714,7 @@ ParameterizedRouteSegmentConstraintBase&lt;T&gt;</code></pre>
     <span class="keyword">var</span> bootstrapper = <span class="keyword">new</span> DefaultNancyBootstrapper();
     <span class="keyword">var</span> browser = <span class="keyword">new</span> Browser(bootstrapper);
 
-    <span class="keyword">var</span> result = browser.Get(<span class="string">"/"</span>, with =&gt; {
-        with.HttpRequest();
-    });
-
+    <span class="keyword">var</span> result = browser.Get(<span class="string">"/"</span>, with =&gt; { with.HttpRequest(); });
     Assert.Equal(HttpStatusCode.OK, result.StatusCode);
 }</code></pre>
 </section>

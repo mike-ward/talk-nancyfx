@@ -136,7 +136,7 @@ public class CustomBootstrapper : DefaultNancyBootstrapper
 ### Resolving Views from Routes
 
 ```cs
-Get["/customers"] = p => View["customers.html"];
+Get["/customers"] = p => View["customers.cshtml"];
 ```
 
 1. Look in the Views folder
@@ -226,14 +226,12 @@ PM> Install-Package Nancy.ViewEngines.Razor
 ```cs
 // captures routes like /hello/nancy sent as a GET request
 
-Get["/hello/{name}"] = parameters => 
-    "Hello " + parameters.name;
+Get["/hello/{name}"] = p => "Hello " + p.name;
 
-// captures routes like /favoriteNumber/1234, 
-// but not /favoriteNumber/asdf as a GET request
+// captures routes like /mynumber/1234, 
+// but not /mynumber/asdf as a GET request
 
-Get["/favoriteNumber/{value:int}"] = parameters => 
-	"Favorite number is " + parameters.value + "?";
+Get["/mynumber/{value:int}"] = p => $"Your number is {p.value}";	
 ```
 
 --
@@ -243,16 +241,12 @@ Get["/favoriteNumber/{value:int}"] = parameters =>
 // captures routes like /products/1034 
 // sent as a DELETE request
 
-Delete[@"/products/(?<id>[\d]{1,7})"] = parameters => {
-	return 200;
-};
+Delete[@"/products/(?<id>[\d]{1,7})"] = p => HttpStatusCode.OK;
 
 // captures routes like /users/192/add/moderator 
 // sent as a POST request
 
-Post["/users/{id}/add/{category}"] = parameters => {
-	return HttpStatusCode.OK;
-};
+Post["/users/{id}/add/{category}"] = p => HttpStatusCode.OK;
 ```
 
 --
@@ -315,10 +309,7 @@ public void Should_return_status_ok_when_route_exists()
 	var bootstrapper = new DefaultNancyBootstrapper();
 	var browser = new Browser(bootstrapper);
 
-	var result = browser.Get("/", with => {
-		with.HttpRequest();
-	});
-
+	var result = browser.Get("/", with => { with.HttpRequest(); });
 	Assert.Equal(HttpStatusCode.OK, result.StatusCode);
 }
 ```
